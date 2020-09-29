@@ -1,11 +1,12 @@
 import * as THREE from 'three';
-import {scene, renderer, camera} from 'app';
+import {scene, renderer, camera, app} from 'app';
 import {BufferGeometryUtils} from 'BufferGeometryUtils';
 
 const sphere = new THREE.SphereBufferGeometry(10, 32, 32);
 
 const img = new Image();
-img.src = './hexagon.jpg';
+console.log('got files', app.files);
+img.src = app.files['/hexagon.jpg'];
 const texture = new THREE.Texture(img);
 texture.wrapS = THREE.RepeatWrapping;
 texture.wrapT = THREE.RepeatWrapping;
@@ -62,9 +63,14 @@ const material = new THREE.ShaderMaterial({
   side: THREE.DoubleSide,
   transparent: true,
 });
-skybox = new THREE.Mesh(sphere, material);
+const skybox = new THREE.Mesh(sphere, material);
 scene.add(skybox);
 
+const startTime = Date.now();
 renderer.setAnimationLoop(() => {
   skybox.material.uniforms.iTime.value = ((Date.now() - startTime) % 3000) / 3000;
+});
+
+app.addEventListener('terminate', e => {
+  console.log('got app terminate');
 });
