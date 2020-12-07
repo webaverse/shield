@@ -5,8 +5,8 @@ import {BufferGeometryUtils} from 'BufferGeometryUtils';
 const sphere = new THREE.SphereBufferGeometry(10, 32, 32);
 
 const img = new Image();
-console.log('got files', app.files);
-img.src = app.files['/hexagon.jpg'];
+// console.log('got files', app.files);
+img.src = app.files['./hexagon.jpg'];
 const texture = new THREE.Texture(img);
 texture.wrapS = THREE.RepeatWrapping;
 texture.wrapT = THREE.RepeatWrapping;
