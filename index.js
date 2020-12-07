@@ -1,5 +1,5 @@
 import * as THREE from 'three';
-import {scene, renderer, camera, app} from 'app';
+import {renderer, camera, app} from 'app';
 import {BufferGeometryUtils} from 'BufferGeometryUtils';
 
 const sphere = new THREE.SphereBufferGeometry(10, 32, 32);
@@ -64,7 +64,7 @@ const material = new THREE.ShaderMaterial({
   transparent: true,
 });
 const skybox = new THREE.Mesh(sphere, material);
-scene.add(skybox);
+app.object.add(skybox);
 
 const startTime = Date.now();
 renderer.setAnimationLoop(() => {
