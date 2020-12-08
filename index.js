@@ -6,6 +6,7 @@ const sphere = new THREE.SphereBufferGeometry(10, 32, 32);
 
 const img = new Image();
 // console.log('got files', app.files);
+img.crossOrigin = 'Anonymous';
 img.src = app.files['./hexagon.jpg'];
 const texture = new THREE.Texture(img);
 texture.wrapS = THREE.RepeatWrapping;
