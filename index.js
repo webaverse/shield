@@ -68,7 +68,7 @@ const skybox = new THREE.Mesh(sphere, material);
 app.object.add(skybox);
 
 const startTime = Date.now();
-renderer.setAnimationLoop(() => {
+app.addEventListener('frame', () => {
   skybox.material.uniforms.iTime.value = ((Date.now() - startTime) % 3000) / 3000;
 });
 
