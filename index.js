@@ -12,7 +12,7 @@ export default () => {
   const img = new Image();
   // console.log('got files', app.files);
   img.crossOrigin = 'Anonymous';
-  img.src = baseUrl + '/hexagon.jpg';
+  img.src = baseUrl + 'hexagon.jpg';
   const texture = new THREE.Texture(img);
   texture.wrapS = THREE.RepeatWrapping;
   texture.wrapT = THREE.RepeatWrapping;
