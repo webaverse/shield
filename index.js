@@ -29,16 +29,19 @@ export default () => {
       iTime: {value: 0},
     },
     vertexShader: `\
+      ${THREE.ShaderChunk.common}
       uniform float iTime;
       varying vec2 uvs;
       varying vec3 vNormal;
       varying vec3 vWorldPosition;
+      ${THREE.ShaderChunk.logdepthbuf_pars_vertex}
       void main() {
         uvs = uv;
         gl_Position = projectionMatrix * modelViewMatrix * vec4( position, 1.0 );
         vNormal = normal;
         vec4 worldPosition = modelMatrix * vec4( position, 1.0 );
         vWorldPosition = worldPosition.xyz;
+        ${THREE.ShaderChunk.logdepthbuf_vertex}
       }
     `,
     fragmentShader: `\
@@ -51,7 +54,7 @@ export default () => {
       varying vec3 vWorldPosition;
 
       const vec3 c = vec3(${new THREE.Color(0x1565c0).toArray().join(', ')});
-
+      ${THREE.ShaderChunk.logdepthbuf_pars_fragment}
       void main() {
         vec2 uv = uvs;
         uv.x *= 1.7320508075688772;
@@ -64,6 +67,7 @@ export default () => {
         float animationFactor = (1.0 + sin((uvs.y*2. + iTime) * PI*2.))/2.;
         float a = glow + (1.0 - texture2D(tex, uv).r) * (0.01 + pow(animationFactor, 10.0) * 0.5);
         gl_FragColor = vec4(c, a);
+        ${THREE.ShaderChunk.logdepthbuf_fragment}
       }
     `,
     side: THREE.DoubleSide,
