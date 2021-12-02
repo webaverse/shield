@@ -1,8 +1,8 @@
 import * as THREE from 'three';
 // import {renderer, camera, app} from 'app';
 import * as BufferGeometryUtils from 'three/examples/jsm/utils/BufferGeometryUtils.js';
-import metaversefile from 'metaversefile';
-const {useFrame} = metaversefile;
+import totum from 'totum';
+const {useFrame} = totum;
 
 const baseUrl = import.meta.url.replace(/(\/)[^\/\\]*$/, '$1');
 
